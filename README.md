@@ -1,7 +1,7 @@
 # Project's name REST API
 ## Description
 
-This is a the backend repository for the React application `app's name`.
+This is a the backend repository for the React application `House of Heroes`.
 
 ---
 
@@ -40,7 +40,34 @@ Users in the database have the following properties:
   "username": String,
   "email": String,
   "hashedPassword": String
+  "role":String
+  "profilePicture": String
 }
+
+ 
+```
+### Main Block
+
+Parts, Events and Issues belong to the model MainBlock:
+
+```js
+{
+    {
+      "name": String,
+      "years": String,     
+      "previousEvent": String,
+      "nextEvent": String,
+      "image": String,
+      "complementaryImages": String,
+      "type": String,
+      "events": String,
+      "issues": String,
+      "description": String,
+      "summary": String,      
+    }
+}
+
+ 
 ```
 
 ---
@@ -52,7 +79,7 @@ Users in the database have the following properties:
 | SIGN UP user     | POST      | /api/v1/auth/signup  | { username, email, password }   |    Public |                 
 | LOG IN user      | POST      | /api/v1/auth/login   | { email, password }             |    Public |                  
 | GET logged in user   | GET     | /api/v1/auth/me    |   | Private |
-
+| Profile page     | POST      | /api/v1/auth/signup  | { username, email, password }   |    Public |     
 ---
 
 ## Useful links
