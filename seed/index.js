@@ -1,5 +1,6 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
+const MainBlock = require ('../models/MainBlock');
 // Import the model
 
 // Place the array you want to seed
@@ -4382,19 +4383,12 @@ const mainBlock = [
     "description": "Doctor Strange defends Earth from the supernatural and inter-dimensional threats no other hero is equipped to handle. But what would happen if he unexpectedly died? Who would protect Earth and keep the mystical evils at bay? And most importantly…who killed Stephen Strange?",
     "summary": "",      
   },
-
-
-
-
-  
-
-
   ]
 
 mongoose.connect(process.env.MONGO_URL)
   .then(x => console.log(`Connected to ${x.connection.name}`))
   .then(() => {
-    return // Model.create(array)
+    return MainBlock.create(mainBlock)
   })
   .then(() => {
     console.log('Seed done 🌱');

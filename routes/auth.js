@@ -44,6 +44,22 @@ router.post('/signup', async (req, res, next) => {
   }
 });
 
+// @desc    Get login page
+// @route   GET /
+// @access  Public
+router.get('/login', async (req, res, next) => {
+  try {
+    const parts = await MainBlock.find({universe: "DC", type:"part"});
+    if (parts.length === 0) {
+      res.status(200).json({ response: 'No DC parts found in the database ' });
+    } else {
+      res.status(200).json({ data: parts })
+    }
+  } catch (error) {
+    next(error);
+  }  
+});
+
 // @desc    LOG IN user
 // @route   POST /api/v1/auth/login
 // @access  Public
