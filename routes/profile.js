@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const User = require('../models/User');
+const fileUploader = require('../config/cloudinary.config');
 
 // @desc    Get all DC parts
 // @route   GET /

@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const { Schema, model } = mongoose;
 
-const eventSchema = new Schema({
+const partSchema = new Schema({
     universe: {
       type: String,      
       required: true
@@ -11,31 +11,21 @@ const eventSchema = new Schema({
       required: true
     },
     order: {
-      type: String,     
+      type: String,      
     },
     years: {
       type: String,      
       },
-    previousEvent: {
-      type: String,        
-      },
-    nextEvent: {
-      type: String,        
-      },
-    image: {
-      type: String,        
-      },
-    complementaryImages: {
-      type: String,        
+    events: {
+      type: [Schema.Types.ObjectId],
+      ref: 'Event'
       },
     issues: {
       type: [Schema.Types.ObjectId],
       ref: 'Issue'
       },
+
     description: {
-      type: String,        
-      },
-    summary: {
       type: String,        
       },
   },
@@ -43,6 +33,8 @@ const eventSchema = new Schema({
       timestamps: true
     });
   
-  const Event = model("Event", eventSchema);
+  const Part = model("Part", partSchema);
 
-  module.exports = Event;
+  module.exports = Part;
+
+ 

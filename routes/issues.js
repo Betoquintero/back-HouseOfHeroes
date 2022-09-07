@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const Issue = require ('../models/Issue');
+const fileUploader = require('../config/cloudinary.config');
 
 // @desc    Get all DC and Marvel issues
 // @route   GET /
@@ -21,9 +22,9 @@ router.get('/', async (req, res, next) => {
 // @route   GET /:id
 // @access  Public
 router.get('/:id', async (req, res, next) => { 
-  const { id } = req.params; 
+  const {id} = req.params; 
   try {
-    const issue = await Issue.findById({id});
+    const issue = await Issue.findById(id);
     if (issue.length === 0) {
       res.status(200).json({ response: 'No issues found in the database ' });
     } else {

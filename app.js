@@ -10,7 +10,9 @@ const errorHandler = require('./middlewares/errorHandler');
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
 const issuesRouter = require('./routes/issues');
+const eventsRouter = require('./routes/events');
 const profileRouter = require('./routes/profile');
+const partsRouter = require('./routes/parts');
 
 const app = express();
 
@@ -33,7 +35,8 @@ app.use('/', indexRouter);
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/issues', issuesRouter);
 app.use('/api/v1/profile', profileRouter);
-
+app.use('/api/v1/events', eventsRouter);
+app.use('/api/v1/parts', partsRouter);
 app.use(errorHandler);
 
 // catch 404 and forward to error handler
