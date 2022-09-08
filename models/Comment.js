@@ -8,14 +8,11 @@ const commentSchema = new Schema(
       trim: true,
       required: [true, 'Comment is required.'],      
     },
-    item_Id: {
-        type: String,              
+    issue_Id: {
+      type: Schema.Types.ObjectId, ref: "Issue",              
       },
     userId:{
-        type:String
-    },
-    userImage:{
-         type:String,
+      type: Schema.Types.ObjectId, ref: "User",
     },
   },
   {
