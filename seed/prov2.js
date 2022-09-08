@@ -1,4 +1,4 @@
-const parts = [
+const issues = [
     {
       //Batman: A Lonely Place of Dying 
       "universe":"DC",
@@ -10,6 +10,7 @@ const parts = [
       "description": "'A Lonely Place of Dying' part 1! Batman pushes the limits following Jason Todd's death. Meanwhile, a mysterious individual stalks Batman and Nightwing. Continued in The New Titans (1988-1996) #60. Batman continues to act in an uncontrolled and undisciplined manner, unaware that Two-Face is trying to have him killed, or that someone has been tailing him and taking photos. This same someone attempts to find Dick Grayson, and hearing that Haly's Circus is closing, assumes that this will be Dick's destination.",             
     },
     {
+        //Batman: A Lonely Place of Dying
         "universe":"DC",
         "name": "New Titans #60",
         "order":"2",           
@@ -19,6 +20,7 @@ const parts = [
         "description": "A Lonely Place to Be: Part 2 of 5. Roots! Guest-starring Speedy. Batman cameo. Story continued from Batman #440. On a journey of self discovery, Dick Grayson returns to the place where it all began, the circus. And, he soon learns that there is more going on under the Big Top than meets the eye. Plus, who is the mysterious kid following Dick around and what is his connection to Batman. Story continues in Batman #441.",             
       },
       {
+        //Batman: A Lonely Place of Dying
         "universe":"DC",
         "name": "Batman #441",
         "order":"3",           
@@ -28,6 +30,7 @@ const parts = [
         "description": "'A Lonely Place of Dying' part 3, continued from The New Titans (1988-1996) #60. As the Dark Knight and Two-Face face off, Dick Grayson and Tim Drake discuss the future of Batman and Robin. Continued in The New Titans (1988-1996) #61. Batman tries to capture Two-Face, while Two-Face attempts to lure Batman to his death - inevitably both fail in their endeavours. Meanwhile, Dick Grayson brings Tim Drake to Wayne Manor, where Tim explains how he deduced Batman and Robin's secret identities. He tries to persuade Dick to take up the Robin identity to help Batman. However, although Dick wants to help his mentor, he will do so as Nightwing, not as Robin.",             
       },
       {
+        //Batman: A Lonely Place of Dying
         "universe":"DC",
         "name": "New Titans #61",
         "order":"4",           
@@ -37,6 +40,7 @@ const parts = [
         "description": "A Lonely Place to Be: Part 4 of 5. 'Going Home!' Guest-starring Batman and Speedy. Story continued from Batman #441. The Dynamic Duo reunited! Batman and Nightwing team-up to stop Two-Face's dastardly plan. Or have they been reunited only to fall into the arch fiends trap? Story concludes in Batman #442.",             
       },
       {
+        //Batman: A Lonely Place of Dying
         "universe":"DC",
         "name": "Batman #442",
         "order":"5",           
@@ -335,11 +339,4 @@ const parts = [
         "complementaryImages": "",
         "description": "The conclusion of THE TRIAL OF JEAN GREY leaves two teams devastated!",             
       },
-      
-      
-      
-      
-
-      
-
 ]

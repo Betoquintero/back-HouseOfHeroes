@@ -13,6 +13,9 @@ const issueSchema = new Schema({
     order: {
       type: String,      
     },
+    partOf: {
+      type: String,      
+    },
     years: {
       type: String,      
       },
