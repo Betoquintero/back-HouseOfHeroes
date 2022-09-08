@@ -8,10 +8,10 @@ const commentSchema = new Schema(
       trim: true,
       required: [true, 'Comment is required.'],      
     },
-    elemComment: {
+    item_Id: {
         type: String,              
       },
-    commentingUser:{
+    userId:{
         type:String
     },
     userImage:{

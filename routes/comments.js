@@ -25,15 +25,16 @@ router.get('/:item', isAuthenticated, async (req, res, next) => {
 // @desc    Sends the comment in the form to the data base
 // @route   POST /comments/"coin name"
 // @access  Private  
-router.post('/:item', isAuthenticated, async (req, res, next) => {
-    const { comment, itemCommented, commentingUser, userImage } = req.body;
-    const userFromDb = req.payload;
-    const {item} = req.params      
+router.post('/:id', isAuthenticated, async (req, res, next) => {
+    const { comment } = req.body;
+    const userFromDb = req.payload._id;
+    const userImage = req.payload.userImage
+    const {id} = req.params      
     if (!comment) {
         res.status(200).json({ response: 'Please write a comment' });
     }
     try {
-      const userComment = await Comment.create({comment, itemCommented, commentingUser, userImage});
+      const userComment = await Comment.create({comment, item_Id:id, userId: userFromDb , userImage});
       res.status(201).json({ data: userComment })        
     } catch (error) {
       next(error)
