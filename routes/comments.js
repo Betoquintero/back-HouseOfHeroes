@@ -14,7 +14,7 @@ router.get('/:item', async (req, res, next) => {
     
     const {item} = req.params
        try {               
-        const issueComment = await Comment.find({ issue_id: item }).populate("userId");
+        const issueComment = await Comment.find({ issue_Id: item }).populate("userId");
         res.status(201).json({ data: issueComment }) ;        
     } catch (error) {
         next(error)

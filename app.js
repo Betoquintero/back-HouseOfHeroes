@@ -13,6 +13,7 @@ const issuesRouter = require('./routes/issues');
 const eventsRouter = require('./routes/events');
 const profileRouter = require('./routes/profile');
 const partsRouter = require('./routes/parts');
+const commentsRouter = require('./routes/comments');
 
 const app = express();
 
@@ -37,6 +38,7 @@ app.use('/api/v1/issues', issuesRouter);
 app.use('/api/v1/profile', profileRouter);
 app.use('/api/v1/events', eventsRouter);
 app.use('/api/v1/parts', partsRouter);
+app.use('/api/v1/comments', commentsRouter);
 app.use(errorHandler);
 
 // catch 404 and forward to error handler
