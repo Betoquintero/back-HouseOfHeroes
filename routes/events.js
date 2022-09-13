@@ -11,7 +11,8 @@ router.get('/', async (req, res, next) => {
       if (events.length === 0) {
         res.status(200).json({ response: 'No events found in the database ' });
       } else {
-        res.status(200).json({ data: events})
+        const sorted = [...events].sort((a,b) => a.order - b.order);
+        res.status(200).json({ data: sorted})
       }
     } catch (error) {
       next(error);

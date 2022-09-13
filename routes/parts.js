@@ -11,7 +11,8 @@ router.get('/:universe', async (req, res, next) => {
     if (parts.length === 0) {
       res.status(200).json({ response: 'No parts found in the database ' });
     } else {
-      res.status(200).json({ data: parts})
+      const sorted = [...parts].sort((a,b) => a.order - b.order);
+      res.status(200).json({ data: sorted})
     }
   } catch (error) {
     next(error);
