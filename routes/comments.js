@@ -4,6 +4,7 @@ const Comment = require('../models/Comment');
 const fileUploader = require('../config/cloudinary.config');
 const jwt = require("jsonwebtoken");
 const { isAuthenticated } = require('../middlewares/jwt');
+const ErrorResponse = require('../utils/error');
 
 
 

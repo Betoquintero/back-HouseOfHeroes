@@ -1,25 +1,23 @@
 const mongoose = require("mongoose");
 const { Schema, model } = mongoose;
  
-const commentSchema = new Schema(
+const collectionSchema = new Schema(
   {
-    comment: {
-      type: String,
-      trim: true,
-      required: [true, 'Comment is required.'],      
+    userId: {
+      type: String,     
     },
-    issue_Id: {
-      type: Schema.Types.ObjectId, ref: "Issue",              
+    issues: {
+      type: [Schema.Types.ObjectId], ref: "Issue",              
       },
-    userId:{
-      type: Schema.Type .ObjectId, ref: "User",
+    events:{
+      type: [Schema.Types.ObjectId], ref: "Event",
     },
   },
-  {
+  { 
     timestamps: true
   }
 );
 
-const Comment = model('Comment', commentSchema);
+const Colection = model('Collection', collectionSchema);
 
-module.exports = Comment;
+module.exports = Colection;

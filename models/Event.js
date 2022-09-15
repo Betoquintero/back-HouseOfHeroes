@@ -4,11 +4,9 @@ const { Schema, model } = mongoose;
 const eventSchema = new Schema({
     universe: {
       type: String,      
-      required: true
     },
     name: {
-      type: String,
-      required: true
+      type: String,      
     },
     order: {
       type: String,     
