@@ -12,7 +12,14 @@ const { isAuthenticated } = require('../middlewares/jwt');
 router.get('/', isAuthenticated, async (req, res, next) => {   
   const userId = req.payload._id 
     try {
-        const userCollection = await Collection.find({ userId:userId }).populate("events");
+        const userCollection = await Collection.findOne({ userId:userId }).populate({
+            path: 'events',
+            model: 'Event',
+            populate: {
+                path: 'issues',
+                model: 'Issue'
+            }
+        });
         res.status(201).json({ data: userCollection })             
     } catch (error) {
       next(error);
@@ -26,9 +33,19 @@ router.get('/', isAuthenticated, async (req, res, next) => {
     const {id} = req.params  
     const userId = req.payload._id  
       try {          
-        const event = await Collection.create({userId, events:id});
-        console.log(event)
-        res.status(201).json({ data: event })            
+        const collection = await Collection.findOne({ userId: userId });
+        if(collection){
+            if(!collection.events.includes(id)){
+                collection.events.push(id);
+                collection.save();
+                res.status(201).json({ data: collection })   
+            } else {
+                res.status(201).json({ data: collection, message: "Event is already on user's collection" })   
+            }
+        } else {
+            const collection = await Collection.create({userId, events:id});
+            res.status(201).json({ data: collection })     
+        }                 
       } catch (error) {
         next(error);
       }
@@ -36,19 +53,3 @@ router.get('/', isAuthenticated, async (req, res, next) => {
 
   module.exports = router;
 
-//   router.post('/:id', isAuthenticated, async (req, res, next) => { 
-//     const {id} = req.params  
-//     const userId = req.payload._id  
-//       try {
-//         const eventInDB = await Collection.find(id);
-//         console.log(eventInDB)
-//         if (eventInDB) {
-//           return next(new ErrorResponse(`Collection already exists`, 400))
-//         } else {
-//           const event = await Collection.create({userId, issues, events:id});
-//           res.status(201).json({ data: event })
-//         }       
-//       } catch (error) {
-//         next(error);
-//       }
-//     });
