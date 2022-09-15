@@ -6,11 +6,10 @@ const ErrorResponse = require('../utils/error');
 const { isAuthenticated } = require('../middlewares/jwt');
 
 
-// @desc    Create an collection
-// @route   POST /
-// @access  Public
-router.get('/:id', isAuthenticated, async (req, res, next) => { 
-  const { id } = req.params  
+// @desc    Show  a collection
+// @route   GET /
+// @access  Private
+router.get('/', isAuthenticated, async (req, res, next) => {   
   const userId = req.payload._id 
     try {
         const userCollection = await Collection.find({ userId:userId }).populate("events");
@@ -20,24 +19,36 @@ router.get('/:id', isAuthenticated, async (req, res, next) => {
     }
   });
 
-// @desc    Create an collection
+// @desc    Create a collection
 // @route   POST /
-// @access  Public
+// @access  Private
   router.post('/:id', isAuthenticated, async (req, res, next) => { 
     const {id} = req.params  
     const userId = req.payload._id  
-      try {
-        const eventInDB = await Collection.find(id);
-        console.log(eventInDB)
-        if (eventInDB) {
-          return next(new ErrorResponse(`Collection already exists`, 400))
-        } else {
-          const event = await Collection.create({userId, issues, events:id});
-          res.status(201).json({ data: event })
-        }       
+      try {          
+        const event = await Collection.create({userId, events:id});
+        console.log(event)
+        res.status(201).json({ data: event })            
       } catch (error) {
         next(error);
       }
     });
 
   module.exports = router;
+
+//   router.post('/:id', isAuthenticated, async (req, res, next) => { 
+//     const {id} = req.params  
+//     const userId = req.payload._id  
+//       try {
+//         const eventInDB = await Collection.find(id);
+//         console.log(eventInDB)
+//         if (eventInDB) {
+//           return next(new ErrorResponse(`Collection already exists`, 400))
+//         } else {
+//           const event = await Collection.create({userId, issues, events:id});
+//           res.status(201).json({ data: event })
+//         }       
+//       } catch (error) {
+//         next(error);
+//       }
+//     });
