@@ -20,25 +20,7 @@ router.get('/:id', isAuthenticated, async (req, res, next) => {
     }  
   });
 
-// @desc    Edit user profile
-// @route   PUT /:id
-// @access  Public
-router.put('/edit/:id', isAuthenticated, fileUploader.single('imageUrl'), async (req, res, next) => {
-    const { id } = req.params;     
-    const { email, username, uploadedPicture } = req.body;
-    let imageUrl;
-    if(req.files) {
-      imageUrl =  req.files.path   
-    } else {
-      imageUrl = uploadedPicture
-    }
-      try {
-        const updatedUser = await User.findByIdAndUpdate(id, {email, username, uploadedPicture}, { new: true });
-        res.status(201).json({ data: updatedUser })
-      } catch (error) {
-        next(error);
-      }
-    });
+
 
 // @desc    Delete a user
 // @route   DELETE /user/delete
