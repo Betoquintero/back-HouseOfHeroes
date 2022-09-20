@@ -9,7 +9,7 @@ router.get('/', async (req, res, next) => {
     try {
       const issues = await Issue.find({});
       if (issues.length === 0) {
-        res.status(200).json({ response: 'No issues found in the database ' });
+        res.status(404).json({ response: 'No issues found in the database ' });
       } else {
         const sorted = [...issues].sort((a,b) => a.order - b.order);
         res.status(200).json({ data: sorted})
@@ -27,7 +27,7 @@ router.get('/:id', async (req, res, next) => {
   try {
     const issue = await Issue.findById(id);
     if (issue.length === 0) {
-      res.status(200).json({ response: 'No issues found in the database ' });
+      res.status(404).json({ response: 'No issues found in the database ' });
     } else {
       res.status(200).json({ data: issue})
     }

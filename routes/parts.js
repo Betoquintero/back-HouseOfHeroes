@@ -9,7 +9,7 @@ router.get('/:universe', async (req, res, next) => {
   try {
     const parts = await Part.find({universe:universe});
     if (parts.length === 0) {
-      res.status(200).json({ response: 'No parts found in the database ' });
+      res.status(404).json({ response: 'No parts found in the database ' });
     } else {
       const sorted = [...parts].sort((a,b) => a.order - b.order);
       res.status(200).json({ data: sorted})
@@ -27,7 +27,7 @@ const {id} = req.params;
 try {    
   const part = await Part.findById(id).populate('events');  
   if (part.length === 0) {
-    res.status(200).json({ response: 'No parts found in the database ' });
+    res.status(404).json({ response: 'No parts found in the database ' });
   } else {
     res.status(200).json({ data: part})
   }

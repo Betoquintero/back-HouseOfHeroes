@@ -12,7 +12,7 @@ router.get('/', async (req, res, next) => {
     try {
       const events = await Event.find({});
       if (events.length === 0) {
-        res.status(200).json({ response: 'No events found in the database ' });
+        res.status(404).json({ response: 'No events found in the database ' });
       } else {
         const sorted = [...events].sort((a,b) => a.order - b.order);
         res.status(200).json({ data: sorted})
@@ -30,7 +30,7 @@ router.get('/:id', async (req, res, next) => {
   try {    
     const event = await Event.findById(id).populate('issues');
     if (event.length === 0) {
-      res.status(200).json({ response: 'No event found in the database ' });
+      res.status(404).json({ response: 'No event found in the database ' });
     } else {
       res.status(200).json({ data: event})
     }
@@ -82,19 +82,3 @@ router.delete('/:id', async (req, res, next) => {
 
   module.exports = router;
 
-  // router.post('/:id', isAuthenticated, async (req, res, next) => { 
-  //   const {id} = req.params  
-  //   const userId = req.payload._id  //  
-  //     try {
-  //       const eventInDB = await Collection.findOne(id);
-  //       console.log(eventInDB)
-  //       if (eventInDB) {
-  //         return next(new ErrorResponse(`Collection already exists`, 400))
-  //       } else {
-  //         const event = await Collection.create({userId, issues, events:id});
-  //         res.status(201).json({ data: event })
-  //       }       
-  //     } catch (error) {
-  //       next(error);
-  //     }
-  //   });

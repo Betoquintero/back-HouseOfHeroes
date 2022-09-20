@@ -51,6 +51,24 @@ router.get('/', isAuthenticated, async (req, res, next) => {
       }
     });
 
+// @desc    Delete an event collection
+// @route   GET /delete-event/:id
+// @access  Public
+router.get('/delete-event/:id', isAuthenticated, async (req, res, next) => {  
+  const { id } = req.params;
+  const userId = req.payload._id
+  try {
+    const userCollection = await Collection.findOne({userId: userId});
+    userCollection.events.pull(id);
+    userCollection.save();    
+    res.status(202).json({ data: userCollection });
+  } catch (error) {
+    next(error);
+  }
+});
+
+    
+
 // @desc    Show  issue collection
 // @route   GET /
 // @access  Private
@@ -88,6 +106,22 @@ router.get('/issue', isAuthenticated, async (req, res, next) => {
         next(error);
       }
     });
+
+// @desc    Delete an issue collection
+// @route   GET /delete-issue/:id
+// @access  Public
+router.get('/delete-issue/:id', isAuthenticated, async (req, res, next) => {  
+  const { id } = req.params;
+  const userId = req.payload._id
+  try {
+    const userCollection = await Collection.findOne({userId: userId});
+    userCollection.issues.pull(id);
+    userCollection.save();    
+    res.status(202).json({ data: userCollection });
+  } catch (error) {
+    next(error);
+  }
+});
 
   module.exports = router;
 
