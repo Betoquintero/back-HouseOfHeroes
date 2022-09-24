@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const Collection = require ('../models/Collection');
+const Read = require ('../models/Reads');
 const Event = require ('../models/Event');
 const fileUploader = require('../config/cloudinary.config');
 const ErrorResponse = require('../utils/error');
@@ -65,9 +66,7 @@ router.get('/delete-event/:id', isAuthenticated, async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-});
-
-    
+});    
 
 // @desc    Show  issue collection
 // @route   GET /
@@ -121,6 +120,44 @@ router.get('/delete-issue/:id', isAuthenticated, async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+});
+
+// @desc    Mark issue as read
+// @route   GET /
+// @access  Public
+router.get('/read/:id', isAuthenticated, async (req, res, next) => { 
+  const {id} = req.params;
+  const userId = req.payload._id 
+  try {
+    const issueInRead = await Read.findOne({issueId: id, userId: userId}); 
+    console.log(issueInRead)       
+    if (!issueInRead) {
+      const newRead = await Read.create({issueId: id, userId: userId})
+      console.log(newRead)
+      res.status(200).json({ response: 'Read created' });
+    } else {
+      issueInRead.read = !issueInRead.read
+      issueInRead.save();
+      res.status(200).json({ response: 'Status changed succesfully'})
+    }
+  } catch (error) {
+    next(error);
+  }  
+});
+
+// @desc    Mark issue as read
+// @route   GET /
+// @access  Public
+router.get('/readIssue', isAuthenticated, async (req, res, next) => { 
+  const {id} = req.params;
+  const userId = req.payload._id 
+  try {
+    const buttonIssue = await Read.find({userId: userId});
+    console.log(buttonIssue)
+    res.status(200).json({ data: buttonIssue})     
+  } catch (error) {
+    next(error);
+  }  
 });
 
   module.exports = router;
