@@ -20,11 +20,22 @@ router.get('/loggedInUser', isAuthenticated, async (req, res, next) => {
   }
 });
 
+// @desc    Upload a picture to Cloudinary
+// @route   POST /api/v1/projects/upload
+// @access  Private
+router.post("/upload", fileUploader.single("imageUrl"), (req, res, next) => {
+  if (!req.file) {
+    next(new ErrorResponse('Error uploading the image', 500));
+    return;
+  }
+  res.json({ fileUrl: req.file.path });
+});
+
 // @desc    Edit user
 // @route   PUT /api/v1/user/edit
 // @access  Private
 router.put('/edit', isAuthenticated, async (req, res, next) => {
-  const { email, username, imageUrl } = req.body;
+  const { email, username, imageUrl  } = req.body;
   // Check if email or password or name are provided as empty string 
   if (email === "" || username === "") {
     return next(new ErrorResponse('Please fill all the fields to register', 400))
@@ -48,16 +59,7 @@ router.put('/edit', isAuthenticated, async (req, res, next) => {
   }
 });
 
-// @desc    Upload a picture to Cloudinary
-// @route   POST /api/v1/projects/upload
-// @access  Private
-router.post("/upload", fileUploader.single("imageUrl"), (req, res, next) => {
-    if (!req.file) {
-      next(new ErrorResponse('Error uploading the image', 500));
-      return;
-    }
-    res.json({ fileUrl: req.file.path });
-  });
+
 
 module.exports = router;
 
