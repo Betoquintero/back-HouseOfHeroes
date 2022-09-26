@@ -40,43 +40,112 @@ npm run seed
 
 ## Models
 
+- User
+- Collection
+- Comment
+- Event 
+- Issue
+- Part
+
 ### User
 
 Users in the database have the following properties:
 
 ```js
-{
-  "username": String,
+{  
   "email": String,
   "hashedPassword": String
-  "role":String
-  "profilePicture": String
+  "username": String,
+  "imageUrl": String
+  "role":String  
 }
 
 
 ```
 
-### Main Block
+### Collection
 
-Parts, Events and Issues belong to the model MainBlock:
+Stored in each user profile and will change depending on each user
 
 ```js
-{
-    {
-      "universe": String,
-      "name": String,
-      "order": String,
-      "partOf": String,
-      "years": String,
-      "previousEvent": String,
-      "nextEvent": String,
-      "image": String,
-      "complementaryImages": String,
-      "type": String,
-      "issues": String,
-      "description": String,
-      "summary": String,
-    }
+{    
+    "userId": String,
+    "issues": [],
+    "events": [],   
+}
+
+
+```
+
+### Comment
+
+A comment section for each part, event and issue individually
+
+```js
+{    
+    "comment": String,
+    "issue_Id": String,
+    "userId": String,   
+}
+
+
+```
+
+### Event
+
+Each event is part of a PART and has ISSUES
+
+```js
+{    
+    "universe": String,
+    "name": String,
+    "order": String,
+    "years": String,
+    "previousEvent": String,
+    "nextEvent": String,
+    "image": String,
+    "complementaryImages": String,
+    "issues": [],
+    "description": String,
+    "summary": String,   
+}
+
+
+```
+
+### Issue
+
+Issues are part of the database 
+
+```js
+{    
+    "universe": String,
+    "name": String,
+    "order": String,
+    "partOf": String,
+    "years": String,
+    "image": String,
+    "complementaryImages": String,    
+    "description": String,
+    "summary": String,   
+}
+
+
+```
+
+### Part
+
+Part is the global container for events and issues
+
+```js
+{    
+    "universe": String,
+    "name": String,
+    "order": String,    
+    "years": String,
+    "events": [],
+    "issues": [],   
+    "description": String,    
 }
 
 
@@ -94,7 +163,7 @@ Parts, Events and Issues belong to the model MainBlock:
 | Profile page       | POST   | /api/v1/auth/signup | { username, email, password } | Public         |
 
 Show DC page GET /api/v1/dc/  
- Show all DC parts GET /api/v1/dc/parts
+Show all DC parts GET /api/v1/dc/parts
 Show DC part detail GET /api/v1/dc/parts/:part
 Show all DC events GET /api/v1/dc/events
 Show DC event detail GET /api/v1/dc/events/:event

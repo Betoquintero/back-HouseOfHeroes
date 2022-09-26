@@ -21,7 +21,7 @@ router.get('/loggedInUser', isAuthenticated, async (req, res, next) => {
 });
 
 // @desc    Edit user
-// @route   GET /api/v1/user/edit
+// @route   PUT /api/v1/user/edit
 // @access  Private
 router.put('/edit', isAuthenticated, async (req, res, next) => {
   const { email, username, imageUrl } = req.body;
