@@ -191,7 +191,7 @@ Edit an Event PUT /api/v1/dc/events/create-event/:event
 
 ## Useful links
 
-- [Presentation slides]()
-- [Frontend repository]()
-- [Frontend deploy]()
-- [Deployed REST API]()
+- [Presentation slides](https://slides.com/albertoquintero-1/deck)
+- [Frontend repository](https://github.com/Betoquintero/front-HouseOfHeroes.git)
+- [Frontend deploy](https://house-of-heroes.netlify.app/)
+- [Deployed REST API](https://house-of-heroes.herokuapp.com/)
