@@ -13,7 +13,7 @@ router.get('/read-statuses', isAuthenticated, async (req, res, next) => {
     const readStatuses = await ReadStatus.find({ userId: userId }).populate('issueId');
     res.status(200).json(readStatuses);
   } catch (error) {
-    next(error); // Make sure you have error handling middleware to catch this
+    next(error);
   }
 });
 
@@ -21,21 +21,19 @@ router.get('/read-statuses', isAuthenticated, async (req, res, next) => {
 // @route   PATCH /toggle-read/:issueId
 // @access  Private
 router.patch('/toggle-read/:issueId', isAuthenticated, async (req, res, next) => {
-  const userId = req.payload._id; // As above
+  const userId = req.payload._id;
   const { issueId } = req.params;
 
   try {
     let readStatus = await ReadStatus.findOne({ userId: userId, issueId: issueId });
     
     if (!readStatus) {
-      // If no read status exists, create a new one and set it to read
       readStatus = await ReadStatus.create({
         userId: userId,
         issueId: issueId,
-        isRead: true // Defaulting to true, as this is the first read
+        isRead: true
       });
     } else {
-      // If a read status exists, toggle it
       readStatus.isRead = !readStatus.isRead;
       await readStatus.save();
     }

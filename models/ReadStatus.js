@@ -1,3 +1,6 @@
+const mongoose = require("mongoose");
+const { Schema, model } = mongoose;
+
 const readStatusSchema = new Schema({
     userId: {
       type: Schema.Types.ObjectId, 

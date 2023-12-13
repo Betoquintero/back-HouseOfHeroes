@@ -15,6 +15,7 @@ const profileRouter = require('./routes/profile');
 const partsRouter = require('./routes/parts');
 const commentsRouter = require('./routes/comments');
 const collectionsRouter = require('./routes/collections');
+const readStatusesRouter = require('./routes/readStatuses');
 const userRouter = require('./routes/user');
 
 const app = express();
@@ -42,6 +43,7 @@ app.use('/api/v1/events', eventsRouter);
 app.use('/api/v1/parts', partsRouter);
 app.use('/api/v1/comments', commentsRouter);
 app.use('/api/v1/collections', collectionsRouter);
+app.use('/api/v1/readStatuses', readStatusesRouter )
 app.use('/api/v1/user', userRouter);
 app.use(errorHandler);
 
