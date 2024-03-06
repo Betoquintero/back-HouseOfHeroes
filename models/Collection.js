@@ -18,6 +18,6 @@ const collectionSchema = new Schema(
   }
 );
 
-const Colection = model('Collection', collectionSchema);
+const Collection = model('Collection', collectionSchema);
 
-module.exports = Colection;
+module.exports = Collection;
